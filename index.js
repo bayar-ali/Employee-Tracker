@@ -1,7 +1,4 @@
 
-//create a separte files in develop folder 
-
-
 
 
 const mysql = require("mysql2/promise"); 
@@ -10,10 +7,9 @@ const inquirer = require("inquirer")
 const roles = require("./develop/allRoles"); 
 const EmployeeList = require("./develop/allEmployees");  
 
-const app = express(); 
 
 
-const PORT = process.env.PORT || 8080; 
+
 
 let connection; 
 
@@ -46,62 +42,96 @@ function userPrompt() {
          "Add Employee", "Remove Employee", "Update Employee Role", "Update An Employee Manager", "View All Roles"]
 
     }])
-       
-       .then((result) => {
-           switch (result.options) {
-               case "View All Employees": 
-               console.log("---All Employees---")
 
-               EmployeeList.addEmployee()
+        .then((result) => {
+            switch (result.options) {
+                case "View All Employees":
+                    console.log("---All Employees---")
 
-
-               break; 
-
-               case "View All Employees By department":
-                   console.log("----All Employees by Department---")
-                   EmployeeList.allEmployeesByDepartment()
-                   break; 
-
-                   case "View All Employees By Manager":
-                       console.log("---All Employees by Manager----")
-                       EmployeeList.allEmployeesByManager()
-                       break; 
-
-                       case "Remove Employee":
-                           //
-                           //
-
-                       break;
-
-                       case "Remove Employee":
-                           //
-                           //
-                           break;
-
-                           case "Update an Employee Role":
-                               //see activity 9
-
-                               break;
-
-                               case "Update Employees Manager": 
-                               //set and where
-
-                               break;
-
-                               case "View All Roles":
-                                   //
-
-                                   roles.allRoles();
-                                   break;
+                    EmployeeList.addEmployee()
 
 
+                    break;
+
+                case "View All Employees By department":
+                    console.log("----All Employees by Department---")
+                    EmployeeList.allEmployeesByDepartment()
+                    break;
+
+                case "View All Employees By Manager":
+                    console.log("---All Employees by Manager----")
+                    EmployeeList.allEmployeesByManager()
+                    break;
+
+                case "Add Employee":
+                    console.log("---adding employee here-----")
+                    addEmployee.addingEmployeeFunction()
+                    //
 
 
-           }
-       })
+                    break;
+
+                case "Remove Employee":
+                    //
+                    connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
+                        if (err) throw (err)
+                        console.table(listResults)
+                        let i;
+                        let identity = []
+                        for (i = 0; i < listResults.length; i++) {
+
+                            identity.push(`${listResults[i].id}`)
+                        }
+
+                        inquirer.prompt([{
+                            type: "list",
+                            name: "choices",
+                            message: "Which employee would you like to remove?",
+                            choices: identity
+                        }])
+                            .then((removeList) => {
+                                // console.log(removeList.choices)
+                                connection.query("DELETE FROM employees WHERE ?",
+                                    {
+                                        id: removeList.choices
+                                    },
+                                    (err, deletedItem) => {
+                                        if (err) throw (err)
+                                        connection.end()
+                                    }
+                                )
 
 
-} 
+                            })
+                    });
 
- userPrompt(); 
+
+                    break;
+
+                case "Update an Employee Role":
+                    //see activity 9
+
+                    break;
+
+                case "Update Employees Manager":
+                    //set and where
+
+                    break;
+
+                case "View All Roles":
+                    //
+
+                    roles.allRoles();
+                    break;
+
+
+
+
+            }
+        })
+
+
+}
+
+userPrompt();
 
