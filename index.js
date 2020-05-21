@@ -1,3 +1,9 @@
+
+//create a separte files in develop folder 
+
+
+
+
 const mysql = require("mysql"); 
 const inquirer = require("inquirer")
 const addEmployee = require(""); 
@@ -46,9 +52,39 @@ function userPrompt() {
                        break; 
 
                        case "Remove Employee":
-                           
+                           //
+                           //
+
+                       break;
+
+                       case "Remove Employee":
+                           //
+                           //
+                           break;
+
+                           case "Update an Employee Role":
+                               //see activity 9
+
+                               break;
+
+                               case "Update Employees Manager": 
+                               //set and where
+
+                               break;
+
+                               case "View All Roles":
+                                   //
+
+                                   roles.allRoles();
+                                   break;
+
+
+
+
            }
        })
 
 
 }
+
+userPrompt();
