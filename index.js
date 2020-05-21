@@ -4,23 +4,39 @@
 
 
 
-const mysql = require("mysql"); 
+const mysql = require("mysql2/promise"); 
 const inquirer = require("inquirer")
-const addEmployee = require(""); 
-const roles = require(""); 
-const EmployeeList = require(""); 
+ const addEmployee = require("./develop/addEmployee"); 
+const roles = require("./develop/allRoles"); 
+const EmployeeList = require("./develop/allEmployees");  
+
+const app = express(); 
 
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    port: 3306,
-    user: "root", 
-    password: "password",
-    database: "employeeListManager_db"
-});
+const PORT = process.env.PORT || 8080; 
+
+let connection; 
+
+const connectionToDatabase = async () => {
+
+    try {
+        connection = await mysql.createConnection({
+            host: "localhost",
+            port: 3306,
+            user: "root",
+            password: "password",
+            database: "employeeListManager_db"
+        });
+
+        console.log(`connected to Database with id ${connection.threadId}`); 
+
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 
-
+ 
 function userPrompt() {
     return inquirer.prompt([{
         type: "list",
@@ -85,6 +101,7 @@ function userPrompt() {
        })
 
 
-}
+} 
 
-userPrompt();
+ userPrompt(); 
+
