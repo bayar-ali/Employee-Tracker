@@ -1,14 +1,17 @@
+// refer to actvities!! 
 
 
-
-const mysql = require("mysql2/promise"); 
+const mysql = require("mysql2/promise");
 const inquirer = require("inquirer")
- const addEmployee = require("./develop/addEmployee"); 
-const roles = require("./develop/allRoles"); 
-const EmployeeList = require("./develop/allEmployees");  
+const addEmployee = require("./develop/addEmployee");
+const roles = require("./develop/allRoles");
+const EmployeeList = require("./develop/allEmployees");
+const express = require("express"); 
 
 
 
+
+const app = express(); 
 
 
 let connection; 
@@ -132,6 +135,8 @@ function userPrompt() {
 
 
 }
+
+connectionToDatabase(); 
 
 userPrompt();
 
