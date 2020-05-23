@@ -1,4 +1,4 @@
-// refer to actvities!! 
+// refer to actvities!! 1-10
 
 
 const mysql = require("mysql2/promise");
@@ -7,12 +7,13 @@ const addEmployee = require("./develop/addEmployee");
 const roles = require("./develop/allRoles");
 const EmployeeList = require("./develop/allEmployees");
 const express = require("express"); 
+const remove = require("./develop/removeEmployee");
+const update = require("./develop/updateEmployee");
 
 
 
 
 const app = express(); 
-
 
 let connection; 
 
@@ -33,6 +34,7 @@ const connectionToDatabase = async () => {
         console.log(error)
     }
 };
+
 
 
  
@@ -59,23 +61,25 @@ function userPrompt() {
                 case "View All Employees By department":
                     console.log("----All Employees by Department---")
                     EmployeeList.allEmployeesByDepartment()
+
                     break;
 
                 case "View All Employees By Manager":
                     console.log("---All Employees by Manager----")
                     EmployeeList.allEmployeesByManager()
+
                     break;
 
                 case "Add Employee":
-                    console.log("---adding employee here-----")
+                    console.log("---adding employee-----")
                     addEmployee.addingEmployeeFunction()
-                    //
+                    
 
 
                     break;
 
                 case "Remove Employee":
-                    //
+                    
                     connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
                         if (err) throw (err)
                         console.table(listResults)
@@ -93,7 +97,7 @@ function userPrompt() {
                             choices: identity
                         }])
                             .then((removeList) => {
-                                // console.log(removeList.choices)
+                                
                                 connection.query("DELETE FROM employees WHERE ?",
                                     {
                                         id: removeList.choices
@@ -112,23 +116,18 @@ function userPrompt() {
                     break;
 
                 case "Update an Employee Role":
-                    //see activity 9
+                    console.log("---update Employee Role-----")
+                    updateEmployeeRole.updateEmployee()
+                    
 
                     break;
 
-                case "Update Employees Manager":
-                    //set and where
-
-                    break;
+            
 
                 case "View All Roles":
-                    //
-
+                    console.log("----List of all Roles")
                     roles.allRoles();
                     break;
-
-
-
 
             }
         })
@@ -137,6 +136,4 @@ function userPrompt() {
 }
 
 connectionToDatabase(); 
-
 userPrompt();
-
