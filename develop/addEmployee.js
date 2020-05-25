@@ -23,7 +23,7 @@ var addEmployees = {
     addingEmployeeFunction: function (){
         inquirer.prompt([{
             type: "input",
-            name: "firstname",
+            name: "fistname",
             message: "What is the employees first name?",
         },{
             type: "input",
@@ -78,4 +78,7 @@ var addEmployees = {
 
     }
 }
+
+connectionToDatabase()
+
 module.exports = addEmployees
