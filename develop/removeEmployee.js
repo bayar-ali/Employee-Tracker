@@ -4,17 +4,16 @@ const inquirer = require("inquirer")
 
 let  RemoveAnEmployee = {
     removeEmployee: function () {
-        connectMe.connectorFunction()
-        connection.query("SELECT id, first_name, last_name FROM employees", (err, listResults) => {
+        connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
             if (err) throw (err)
             var i;
             var identification = []
 
             for (i = 0; i < listResults.length; i++) {
                 var person = {
-                    name: `${listResults[i].first_name} ${listResults[i].last_name}`,
+                    name: `${listResults[i].fist_name} ${listResults[i].last_name}`,
                     value: {
-                        name: `${listResults[i].first_name} ${listResults[i].last_name}`,
+                        name: `${listResults[i].fist_name} ${listResults[i].last_name}`,
                         id: `${listResults[i].id}`
                     }
 
@@ -48,13 +47,12 @@ let  RemoveAnEmployee = {
                     connection.query("SELECT id, fist_name, last_name, title FROM employees", (err, updatedList) => {
                         if (err) throw (err)
                         console.table(updatedList)
+                        console.log(`---succesfully Deleted ${listResults[i].fist_name}-----`)
                     })
                 })
         })
     }
 }
-
-
 
 
 

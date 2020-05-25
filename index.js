@@ -79,8 +79,12 @@ function userPrompt() {
                     break;
 
                 case "Remove Employee":
+
+                remove.removeEmployee()
+
+
                     
-                    connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
+                   /*  connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
                         if (err) throw (err)
                         console.table(listResults)
                         let i;
@@ -94,7 +98,7 @@ function userPrompt() {
                             type: "list",
                             name: "choices",
                             message: "Which employee would you like to remove?",
-                            choices: identity
+                            choices: identification
                         }])
                             .then((removeList) => {
                                 
@@ -110,7 +114,7 @@ function userPrompt() {
 
 
                             })
-                    });
+                    }); */
 
 
                     break;
