@@ -9,6 +9,7 @@ const EmployeeList = require("./develop/allEmployees");
 const express = require("express"); 
 const remove = require("./develop/removeEmployee");
 const update = require("./develop/updateEmployee");
+const addDepartment = require("./develop/addDepartment"); 
 
 
 
@@ -43,8 +44,8 @@ function userPrompt() {
         type: "list",
         name: "options",
         message: "what would you like to do?",
-        choices: ["view All Employees", "View All Employees By Department", "View All Employees By Manager",
-         "Add Employee", "Remove Employee", "Update Employee Role", "Update An Employee Manager", "View All Roles"]
+        choices: ["view All Employees", "View All Employees By department", "View All Employees By Manager",
+         "Add Employee", "Remove Employee", "Update Employee Role", "add a Department",  "Update An Employee Manager"]
 
     }])
 
@@ -83,54 +84,25 @@ function userPrompt() {
                 remove.removeEmployee()
 
 
-                    
-                   /*  connection.query("SELECT id, fist_name, last_name FROM employees", (err, listResults) => {
-                        if (err) throw (err)
-                        console.table(listResults)
-                        let i;
-                        let identity = []
-                        for (i = 0; i < listResults.length; i++) {
-
-                            identity.push(`${listResults[i].id}`)
-                        }
-
-                        inquirer.prompt([{
-                            type: "list",
-                            name: "choices",
-                            message: "Which employee would you like to remove?",
-                            choices: identification
-                        }])
-                            .then((removeList) => {
-                                
-                                connection.query("DELETE FROM employees WHERE ?",
-                                    {
-                                        id: removeList.choices
-                                    },
-                                    (err, deletedItem) => {
-                                        if (err) throw (err)
-                                        connection.end()
-                                    }
-                                )
-
-
-                            })
-                    }); */
-
 
                     break;
 
                 case "Update an Employee Role":
                     console.log("---update Employee Role-----")
-                    updateEmployeeRole.updateEmployee()
+                    updateEmployeeRole.employeeNew()
                     
 
                     break;
+
+                    case "add a Department":
+                        console.log("---Adding a Department")
+                        addDepartment.addNewDepartment()
 
             
 
                 case "View All Roles":
                     console.log("----List of all Roles")
-                    roles.allRoles();
+                   /*  roles.allRoles(); */
                     break;
 
             }

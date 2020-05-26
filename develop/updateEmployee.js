@@ -4,7 +4,6 @@ const inquirer = require("inquirer");
 
 let updateEmployee = {
     employeesNew: function () {
-        connectMe.ConnectorFunction()
 
         inquirer.prompt([{
             type: "list",

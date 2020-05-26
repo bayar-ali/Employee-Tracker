@@ -47,7 +47,7 @@ let  RemoveAnEmployee = {
                     connection.query("SELECT id, fist_name, last_name, title FROM employees", (err, updatedList) => {
                         if (err) throw (err)
                         console.table(updatedList)
-                        console.log(`---succesfully Deleted ${listResults[i].fist_name}-----`)
+                        console.log("---successfully Deleted-----")
                     })
                 })
         })
