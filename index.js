@@ -87,7 +87,7 @@ function userPrompt() {
 
                     break;
 
-                case "Update an Employee Role":
+                case "Update an Employee":
                     console.log("---update Employee Role-----")
                     updateEmployeeRole.employeeNew()
                     
