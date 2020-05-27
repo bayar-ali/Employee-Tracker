@@ -45,7 +45,7 @@ function userPrompt() {
         type: "list",
         name: "options",
         message: "what would you like to do?",
-        choices: ["view All Employees", "View All Employees By department", "View All Employees By Manager",
+        choices: ["View All Employees","View All Employees By department",
          "Add Employee", "Remove Employee", "Update Employee Role", "add a Department"]
 
     }])
@@ -54,9 +54,8 @@ function userPrompt() {
             switch (result.options) {
 
                 case "View All Employees":
-                    console.log("---All Employees---")
-                   
-                    
+                    console.log("---All The Employees----")
+                    EmployeeList.allEmployeesByManager();
 
                     break;
 
@@ -65,12 +64,6 @@ function userPrompt() {
                     allDepartmentView.allDepartment();
 
                     break;
-
-                 case "View All Employees ":
-                    console.log("---All Employees by Manager----")
-                    EmployeeList.allEmployeesByManager();
-
-                    break; 
 
                 case "Add Employee":
                     console.log("---adding employee-----")
@@ -83,9 +76,9 @@ function userPrompt() {
 
                     break;
 
-                case "Update an Employee":
+                case "Update Employee Role":
                     console.log("---update Employee Role-----")
-                    update.updateEmployeeStatus()
+                    update. employeesNewStatus()
 
                     break;
 
