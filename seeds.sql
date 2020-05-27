@@ -22,7 +22,11 @@ ORDER BY department;
 SELECT fist_name, last_name, manager FROM employees
 ORDER BY manager; 
 
+INSERT INTO department(job, salary)
+values ("Enginner", 12000 ), ("HR", "75000"), ("salesman", 90000), ("bardender", 45000), ("desginer", 80000);
 
+INSERT into roles(title, salary, department_name_id)
+values ("Enginner", 12000, 1 ), ("HR", "75000", 2 ), ("salesman", 90000, 3), ("bardender", 45000, 4), ("desginer", 80000, 5 );
 
 delete FROM employees WHERE fist_name = "undefined";
 

@@ -22,9 +22,15 @@ CREATE TABLE department(
   PRIMARY KEY (id)
 ); 
 
-INSERT INTO department(job, salary)
-values ("Enginner", 12000 ), ("HR", "75000"), ("salesman", 90000), ("bardender", 45000), ("desginer", 80000);
 
+
+CREATE TABLE roles(
+	id INT AUTO_INCREMENT NOT NULL,
+    title VARCHAR(30) NOT NULL,department
+    salary DECIMAL(10,2) NOT NULL,
+    department_name_id INT NOT NULL,
+    PRIMARY KEY (id)
+);
 
 
 

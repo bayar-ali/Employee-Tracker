@@ -69,6 +69,7 @@ var addEmployees = {
             connection.query("SELECT * FROM employees", (err, select)=>{
                 if (err) throw (err)
                 console.table(select)
+                console.log("---successfully Added An Employee-----")
             })
             connection.end()
             

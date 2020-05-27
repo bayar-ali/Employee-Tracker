@@ -10,6 +10,7 @@ const express = require("express");
 const remove = require("./develop/removeEmployee");
 const update = require("./develop/updateEmployee");
 const addDepartment = require("./develop/addDepartment"); 
+const allDepartmentView = require("./develop/all-department");
 
 
 
@@ -45,52 +46,46 @@ function userPrompt() {
         name: "options",
         message: "what would you like to do?",
         choices: ["view All Employees", "View All Employees By department", "View All Employees By Manager",
-         "Add Employee", "Remove Employee", "Update Employee Role", "add a Department",  "Update An Employee Manager"]
+         "Add Employee", "Remove Employee", "Update Employee Role", "add a Department"]
 
     }])
 
         .then((result) => {
             switch (result.options) {
+
                 case "View All Employees":
                     console.log("---All Employees---")
-
-                    EmployeeList.addEmployee()
-
+                   
+                    
 
                     break;
 
                 case "View All Employees By department":
                     console.log("----All Employees by Department---")
-                    EmployeeList.allEmployeesByDepartment()
+                    allDepartmentView.allDepartment();
 
                     break;
 
-                case "View All Employees By Manager":
+                 case "View All Employees ":
                     console.log("---All Employees by Manager----")
-                    EmployeeList.allEmployeesByManager()
+                    EmployeeList.allEmployeesByManager();
 
-                    break;
+                    break; 
 
                 case "Add Employee":
                     console.log("---adding employee-----")
                     addEmployee.addingEmployeeFunction()
                     
-
-
                     break;
 
                 case "Remove Employee":
-
                 remove.removeEmployee()
-
-
 
                     break;
 
                 case "Update an Employee":
                     console.log("---update Employee Role-----")
-                    updateEmployeeRole.employeeNew()
-                    
+                    update.updateEmployeeStatus()
 
                     break;
 
@@ -98,12 +93,8 @@ function userPrompt() {
                         console.log("---Adding a Department")
                         addDepartment.addNewDepartment()
 
-            
-
-                case "View All Roles":
-                    console.log("----List of all Roles")
-                   /*  roles.allRoles(); */
                     break;
+
 
             }
         })
